@@ -1,6 +1,8 @@
 fun main() {
 
+    /***********************************/
     /* Lec 05. 코틀린에서 조건문을 다루는 방법 */
+    /**********************************/
     // 1. if문
     validateScoreIsNotNegative(-2)
 
@@ -37,6 +39,61 @@ fun main() {
     // if / if-else / if -else if - else 모두 Java와 문법이 동일하다
     // 단 kotlin에서는 Expression으로 취급된다 (삼항 연산자가 없다)
     // java의 switch는 kotlin에서 when으로 대체되었고, when은 더 강력한 기능을 갖는다
+
+
+    /***********************************/
+    /* Lec 06. 코틀린에서 반복문을 다루는 방법 */
+    /**********************************/
+    // 1. for-each문 (자바와 동일)
+    getForEach()
+
+    // 2. 전통적인 for문
+    getFor()
+    // 3. Progression과 Range
+    // .. 연산자 : 범위를 만들어 내는 연산자
+    // 1..3 : 1부터 3의 범위
+    // downTo, step도 함수이다! (중위 호출 함수)
+    // 변수.함수이름(argument)대신 -> 변수 함수이름 argument
+    // 코틀린에서 전통적인 for문은 등차수열을 이용한다!
+
+
+    // 4. while문
+    getWhile() // java와 동일
+
+    /* 정리 */
+    // for each문에서 java는 : 을 사용, kotlin은 in을 사용
+    // 전통적인 for문에서 kotlin은 등차수열과 in을 사용
+    // 그 외 for문 문법은 모두 동일
+    // while문과 do while문은 더욱더 놀랍도록 동일
+}
+
+fun getWhile() {
+    var i = 1
+    while (i <= 3) {
+        println(i)
+        i++
+    }
+    // do-while도 동일
+}
+
+fun getFor() {
+    for (i in 1..3) { // 시작값 1, 끝값 3, 공차가 +1인 등차수열
+        println(i)
+    }
+    for (i in 3 downTo 1) { // 시작값 3, 끝값 1, 공차가 -1인 등차수열
+        println(i)
+    }
+
+    for (i in 1..5 step 2) { // 시작값 1, 끝값 5, 공차가 +2인 등차수열
+        println(i)
+    }
+}
+
+fun getForEach() {
+    val numbers = listOf(1L, 2L, 3L) // listOf 컬렉션
+    for (number in numbers) { // 콜론 대신 in을 사용
+        println(number)
+    }
 }
 
 fun judgeNumber2(number: Int) {
