@@ -1,17 +1,20 @@
+import java.io.BufferedReader
+import java.io.File
+import java.io.FileReader
+
 fun main() {
 
-    /***********************************/
     /* Lec 05. 코틀린에서 조건문을 다루는 방법 */
     /**********************************/
     // 1. if문
     validateScoreIsNotNegative(-2)
 
     // 2. Expression과 Statement
-//     Expression : 하나의 값으로 도출되는 문장
-//     Statement : 프로그램의 문장, 하나의 값으로 도출되지 않는다
-//     Expression은 Statement에 포함되어 있음
-//     kotlin에서의 if문은 Expression이다. Java의 if문은 Statement다. 단, Java의 3항 연산자는 Expression이다.
-//     Kotlin은 if-else를 expression으로 사용할 수 있기 때문에 3항 연산자가 없다.
+    // Expression : 하나의 값으로 도출되는 문장
+    // Statement : 프로그램의 문장, 하나의 값으로 도출되지 않는다
+    // Expression은 Statement에 포함되어 있음
+    // kotlin에서의 if문은 Expression이다. Java의 if문은 Statement다. 단, Java의 3항 연산자는 Expression이다.
+    // Kotlin은 if-else를 expression으로 사용할 수 있기 때문에 3항 연산자가 없다.
     println(getPassOrFail(89))
 
     // 3. switch와 when
@@ -41,7 +44,6 @@ fun main() {
     // java의 switch는 kotlin에서 when으로 대체되었고, when은 더 강력한 기능을 갖는다
 
 
-    /***********************************/
     /* Lec 06. 코틀린에서 반복문을 다루는 방법 */
     /**********************************/
     // 1. for-each문 (자바와 동일)
@@ -56,7 +58,6 @@ fun main() {
     // 변수.함수이름(argument)대신 -> 변수 함수이름 argument
     // 코틀린에서 전통적인 for문은 등차수열을 이용한다!
 
-
     // 4. while문
     getWhile() // java와 동일
 
@@ -65,6 +66,60 @@ fun main() {
     // 전통적인 for문에서 kotlin은 등차수열과 in을 사용
     // 그 외 for문 문법은 모두 동일
     // while문과 do while문은 더욱더 놀랍도록 동일
+
+
+    /* Lec 07. 코틀린에서 예외를 다루는 방법   */
+    /**********************************/
+    // 1. try catch finally 구문
+    println(parseIntOrThrow("34"))
+    println(parseIntOrThrow("A"))
+    println(parseIntOrThrow2("A"))// null을 반환
+
+    // 2. Checked Exception과 Unchecked Exception
+    getFilePrinter() // java에서는 checked exception이 발생하지만 kotlin은 없음..?
+    // 이유는 kotlin에서는 Checked Exception과 Unchecked Exception을 구분하지 않음. 모두 Unchecked Exception임
+
+    // 3. try with resources (jdk7에 추가)
+    tryWithResources("~/a.txt")
+
+    /* 정리 */
+    // try catch finally 구문은 문법적으로 java와 완전히 동일
+    // ㄴ kotlin에서는 try catch가 expression이다. return 시작 가능
+    // kotlin에서 모든 예외는 uncehcked exception
+    // kotlin에서 try with resoucres 구문이 없음. 대신 코틀린의 언어적 특징을 활용해 close를 호출해줌
+
+}
+
+fun tryWithResources(path: String) {
+    // kotlin 은 try with resources 구문이 없음 -> try () {}
+    // kotlin은 use라는 inline 함수를 사용
+    BufferedReader(FileReader(path)).use { reader ->
+        println(reader.readLine())
+    }
+}
+
+fun getFilePrinter() {
+    val currentFile = File(".")
+    val file = File(currentFile.absolutePath + "/a.txt")
+    val reader = BufferedReader(FileReader(file))
+    println(reader.readLine())
+    reader.close()
+}
+
+fun parseIntOrThrow(str: String): Int {
+    try {
+        return str.toInt()
+    } catch (e: NumberFormatException) {
+        throw java.lang.IllegalArgumentException("주어진 ${str}는 숫자가 아닙니다.", e)
+    }
+}
+
+fun parseIntOrThrow2(str: String): Int? {
+    return try { // 하나의 expression으로 처리되기 때문에 return try {} 구문이 됨
+        str.toInt()
+    } catch (e: NumberFormatException) {
+        null
+    }
 }
 
 fun getWhile() {
