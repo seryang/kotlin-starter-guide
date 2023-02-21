@@ -88,7 +88,79 @@ fun main() {
     // kotlin에서 모든 예외는 uncehcked exception
     // kotlin에서 try with resoucres 구문이 없음. 대신 코틀린의 언어적 특징을 활용해 close를 호출해줌
 
+
+    /* Lec 08. 코틀린에서 함수를 다루는 방법 */
+    /**********************************/
+    // 1. 함수 선언 문법
+    // 함수가 하나의 결과값이면 {} 대신 = 를 사용
+    // block {} 을 사용하는 경우에는 반호나 타입이 Unit이 아니면, 명시적으로 작성해주어야 함
+    // 함수는 클래스 안에 있을 수도, 파일 최상단에 있을 수도 있음. 또한, 한 파일 안에 여러 함수들이 있을 수도 있음
+    println(maxNum(3, 7))
+
+    // 2. default parameter
+    // 주어진 문자열을 N번 출력하는 예제
+    // 자바는 overload 하게 되면 함수를 n개 생성해야함
+    // kotlin은 default 처리가 가능
+    defaultString("Hello World", 3, true)
+    defaultString("Hello World")
+    defaultString("Hello World", 5, false)
+
+    // 3. named argument (parameter)
+    // builder를 직접 만들지 않고 builder의 장점을 갖게 됨
+    // kotlin에서 java 함수를 가져다 사용할 때는 named argument를 사용할 수 없음 !!!
+    defaultString("Hello World", useNewLine = false) // num은 기본값 3을 쓰되, useNewLine은 false를 쓰고 싶음, name argument (이름 있는 파라미터)
+    printNameAndGender("hi", "boy")
+    printNameAndGender(gender = "boy", name = "hi")
+
+    // 4. 같은 타입의 여러 파라미터 받기 (가변인자)
+    // 문자열을 N개 받아 출력하는 예제 (String... strings -> vararg strings : String)
+    printAll("A", "B", "C")
+
+    // 코틀린에서는 배열을 가변인자에 넣어줄 때 앞에 별표(*)를 붙여줘야 함
+    // spread 연산자라 해서 배열 안에 있는 것들을 마치 그냥, 를 쓰는 것처럼 꺼내준다
+    val array = arrayOf("A", "B", "C")
+    printAll(*array)
+
+    // list를 array로
+    val arrayList:List<String> = listOf<String>("A","B","C")
+    printAll(*arrayList.toTypedArray())
+
+    /* 정리 */
+    // 함수의 문법은 java와 다르다!
+    // body가 하나의 값으로 간주되는 경우 block을 업앨 수 있고, block이 없다면 반환 타입을 없앨 수도 있음
+    // 함수 파라미터에 기본값을 설정해줄 수 있음
+    // 함수를 호출할때 특정 파라미터를 지정해 넣어줄 수 있음
+    // 가변인자에는 vararg 키워드를 사용하며, 가변인자 함수를 배열과 호출할 때는 *를 붙여주어야 함
+
 }
+
+fun printAll(vararg strings: String) { // java처럼 ...를 타입 뒤에 쓰는 대신 제일 앞에 vararg를 적어주어야 한다!
+    for (str in strings) {
+        println(str)
+    }
+}
+
+fun printNameAndGender(name: String, gender: String) {
+    println("name은 $name 이다")
+    println("gender는 $gender 이다")
+}
+
+fun defaultString(str: String, num: Int = 3, useNewLine: Boolean = true) { // 밖에서 파라미터를 넣어주지 않으면 기본값을 사용하자!
+    for (i in 1..num) {
+        if (useNewLine) {
+            println(str)
+        } else {
+            print(str)
+        }
+    }
+}
+
+public fun maxNum(a: Int, b: Int) =
+    if (a > b) { // pubic 접근 지시어로 생략 가능, fun은 함수를 의미하는 키워드, maxNum은 함수이름, 함수의 매개변수(매개변수 :타입), 함수의 반환 타입 (Unit=void인 경우 생략 가능), 이코드는 반환타입 추론이 가능하기때문에 반환타입 생략 가능
+        a
+    } else {
+        b
+    }
 
 fun tryWithResources(path: String) {
     // kotlin 은 try with resources 구문이 없음 -> try () {}
