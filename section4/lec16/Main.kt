@@ -1,4 +1,4 @@
-package lec16
+package section4.lec16
 
 fun main() {
     // Lec16. 코틀린에서 다양한 함수를 다루는 방법
