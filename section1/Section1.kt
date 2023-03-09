@@ -1,3 +1,7 @@
+package section1
+
+import Person
+
 fun main() {
 
     // null 허용
