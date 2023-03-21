@@ -6,7 +6,7 @@ fun main() {
     /**********************************/
 
     // 1. 클래스와 프로퍼티
-//    val person = section3.lec09.Person("최세량", 38)
+//    val person = section3.lec09.section1.Person("최세량", 38)
 //    println(person.name + " " + person.age)
 ////    person.name = "김유경" // val 이라 대입 불가
 //    // getter 대신 . 으로 필드 접근
@@ -15,11 +15,11 @@ fun main() {
 //
 //    // 2. 생성자와 init
 //    // init (초기화) 블록은 생성자가 호출되는 시점에 호출된다.
-////    val ageCheck = section3.lec09.Person("최세량", 0)
+////    val ageCheck = section3.lec09.section1.Person("최세량", 0)
 //
 //    // 주생성자 (primary constructor)
 //    // ㄴ 반드시 존재해야 한다.
-//    val overloadConstructor = section3.lec09.Person("최세량")
+//    val overloadConstructor = section3.lec09.section1.Person("최세량")
 //    println(overloadConstructor.name)
 //    // ㄴ 단, 주생성자에 파라미터가 하나도 없다면 생략 가능!
 //    val student = section3.lec09.Student()
@@ -38,7 +38,7 @@ fun main() {
     // 3. 커스텀 getter, setter
 
     // custom getter
-//    val customGetter = section3.lec09.Person()
+//    val customGetter = section3.lec09.section1.Person()
 //    println(customGetter.isAdult)
 
     // custom setter

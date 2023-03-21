@@ -26,7 +26,7 @@ class Person(
     }
 
     override fun toString(): String {
-        return "section3.lec09.Person(name='$name', age=$age)"
+        return "section3.lec09.section1.Person(name='$name', age=$age)"
     }
 
     // 함수로 만드는 법

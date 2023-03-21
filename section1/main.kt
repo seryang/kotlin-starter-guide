@@ -1,3 +1,5 @@
+package section1
+
 fun main() {
 
     // null 허용
@@ -27,9 +29,9 @@ fun main() {
 //    println(chartName)
 
 //        // 단항 연산자 ++ , --
-//        val age1 = Plus(35)
+//        val age1 = section1.Plus(35)
 //        val age2 = age1
-//        val age3 = Plus(35)
+//        val age3 = section1.Plus(35)
 //
 //        println(age1 == age3)
 //        println(age1 === age3)

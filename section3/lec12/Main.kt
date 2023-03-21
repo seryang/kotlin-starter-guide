@@ -53,7 +53,7 @@ class Person private constructor(
         }
 
         override fun log() {
-            println("나는 Person 클래스의 동객객체 Factory예요")
+            println("나는 section1.Person 클래스의 동객객체 Factory예요")
         }
     }
 }
